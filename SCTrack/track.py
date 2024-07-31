@@ -9,7 +9,7 @@ import time
 import numpy as np
 
 from SCTrack import reclassification
-from SCTrack.utils import mask_to_json
+from SCTrack.utils import mask_tif_to_json
 
 
 def start_track(fannotation: str | dict, fout, basename, track_range=None, fimage=None, fbf=None,
@@ -29,9 +29,9 @@ def start_track(fannotation: str | dict, fout, basename, track_range=None, fimag
     """
 
     if type(fannotation) is str:
-        if not fannotation.endswith('.json'):
+        if fannotation.endswith('.tif') or fannotation.endswith('.tiff'):
             logging.info('convert mask to annotation file...')
-            annotation = mask_to_json(fannotation, xrange=track_range)
+            annotation = mask_tif_to_json(fannotation, xrange=track_range)
         else:
             annotation = fannotation
     else:
