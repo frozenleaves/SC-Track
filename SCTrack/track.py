@@ -13,8 +13,7 @@ from SCTrack.utils import mask_tif_to_json
 
 
 def start_track(fannotation: str | dict, fout, basename, track_range=None, fimage=None, fbf=None,
-                export_visualization=True,
-                track_to_json=True):
+                export_visualization=True):
     """
      :param track_range: Track frame number range
      :param visualize_background_image: track background image
@@ -43,7 +42,7 @@ def start_track(fannotation: str | dict, fout, basename, track_range=None, fimag
     reclassification.run(annotation=annotation, output_dir=result_save_path, track_range=track_range, dic=fbf,
                          mcy=fimage,
                          save_visualize=export_visualization, visualize_background_image=fimage,
-                         track_to_json=track_to_json, basename=basename)
+                         basename=basename)
 
 
 if __name__ == '__main__':
