@@ -26,7 +26,7 @@ RECORD_SPEED: bool = False    # *  Record tracking speed
 
 SMOOTH_WINDOW_LEN = 10  # Window length of smooth classification algorithm
 
-TRACKING_CHECK_WINDOW_LEN: int = 100  # Tracking algorithm backtracking window length
+# TRACKING_CHECK_WINDOW_LEN: int = 100  # Tracking algorithm backtracking window length
 
 PROB_THRESHOLD: float = 0.6  # Probability threshold of smooth classification algorithm
 
