@@ -372,7 +372,7 @@ def refine_tracking(dataframe, cycle = 5):
             break
     
     # sort dataframe 
-    tempdf = tempdf.sort_values(by=["cell_id","frame_index"])
+    tempdf = tempdf.sort_values(by = ["cell_id","frame_index"])
     
     return tempdf
 
