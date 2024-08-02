@@ -51,19 +51,14 @@ Below is the expected outputs from the tracking results assuming that the "image
 |__image.tif
 |__annotation.json
 |__tracking_output\
-   ├─TrackTree\
-   └─track_visualization.tif\
-   └─track.csv
-   └─result_with_track.json
+   ├─track.csv
+   └─track_visualisation.tif
 ```
    
-The `TrackTree` folder contains the detailed information of each TrackTree built during the tracking process.
-The `track_visualization.tif` folder contains the png images visualising the tracking results, and `track.csv` is a detailed table 
+The `track_visualization.tif` are greyscale images visualising the tracking results, and `track.csv` is a detailed table 
 of the tracking results.
 
 For specific information about the track.csv, see https://github.com/chan-labsite/SC-Track/blob/master/notebook/quick-start.ipynb.
-The content of `result_with_track.json` is a copy of the annotation.json file containing the cell track information and corrected 
-cell classification information (if this information was provided in the "annotation.json" file).
 
 SC-Track can run without the corresponding "image.tif" file. In this case, SC-Track will output the tracking results without a corresponding
 `track_visualization.tif` folder containing the labelled cell linages.
