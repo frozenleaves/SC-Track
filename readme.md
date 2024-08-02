@@ -71,18 +71,10 @@ To access our demo dataset, you can visit [here](https://zenodo.org/record/83105
 
 ### Installation
 
-```
-Requirement: Python >= 3.7
+To install the latest version of SC-Track, please download SC-Track from this github repository, navigate to the SC-Track folder and run the command: 
+`python setup.py install`
 
-Windows: pip install SC-Track
-Linux/Macos: pip3 install SC-Track
-
-For details on dependencies, you can view https://github.com/chan-labsite/SC-Track/blob/master/requirements.txt
-Due to file size constraints, the 'example' folder is not included when installing SC-Track from PyPI.
-You can view and download the "example" folder from our GitHub repository if required.
-```
-
--   Note： On `Windows`, the required package `pylibtiff` cannot be installed directly by pip. Please use the following command instead:
+-   Note： On some systems, the required package `pylibtiff` cannot be installed directly by pip. Please use the following command instead:
 
     `conda install libtiff`
 
@@ -92,7 +84,6 @@ You can view and download the "example" folder from our GitHub repository if req
 
     The installation times on a "normal" desktop computer should not exceed 5 minutes assuming that the computer is connected to a reasonably fast (10 Mbps) broadband connection.
 
-    If you install SC-Track from the GitHub repository using the command `python setup.py install`, it is important that you also install the `pylibtiff` package as well.
     If you encounter the following error `ValueError: Failed to find TIFF header file`, you can try running `sudo apt-get install libtiff5-dev` to fix the error.
 
 -----------------------
