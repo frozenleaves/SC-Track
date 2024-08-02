@@ -71,20 +71,23 @@ To access our demo dataset, you can visit [here](https://zenodo.org/record/83105
 
 ### Installation
 
-To install the latest version of SC-Track, please download SC-Track from this github repository, navigate to the SC-Track folder and run the command: 
+To install the latest version of SC-Track, please download SC-Track from this github repository, navigate to the downloaded SC-Track folder and run the command: 
+
 `python setup.py install`
 
--   Note： On some systems, the required package `pylibtiff` cannot be installed directly by pip. Please use the following command instead:
+Note： 
 
-    `conda install libtiff`
+On some systems, the required package `pylibtiff` cannot be installed directly by pip. Please use the following command instead:
 
-    or you can download the wheel package from [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pylibtiff), and use the command `pip install pylibtiff.whl` to install the package.
+`conda install libtiff`
 
-    On `Linux` or `macOS`, you can use the command `pip install pylibtiff`.
+or you can download the wheel package from [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pylibtiff), and use the command `pip install pylibtiff.whl` to install the package.
 
-    The installation times on a "normal" desktop computer should not exceed 5 minutes assuming that the computer is connected to a reasonably fast (10 Mbps) broadband connection.
+On `Linux` or `macOS`, you can use the command `pip install pylibtiff`.
 
-    If you encounter the following error `ValueError: Failed to find TIFF header file`, you can try running `sudo apt-get install libtiff5-dev` to fix the error.
+The installation times on a "normal" desktop computer should not exceed 5 minutes assuming that the computer is connected to a reasonably fast (10 Mbps) broadband connection.
+
+If you encounter the following error `ValueError: Failed to find TIFF header file`, you can try running `sudo apt-get install libtiff5-dev` to fix the error.
 
 -----------------------
 
