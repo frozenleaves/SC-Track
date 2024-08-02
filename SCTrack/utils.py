@@ -14,7 +14,7 @@ from copy import deepcopy
 from functools import wraps
 import skimage.exposure as exposure
 from skimage.util import img_as_ubyte
-from libtiff import TIFF
+#from libtiff import TIFF
 import tifffile
 import matplotlib.pyplot as plt
 import numpy as np
@@ -54,23 +54,23 @@ def time_it(logger: logging.Logger = None, using=False):
     return switch
 
 
-def tif2png(img: str | os.PathLike, png_dir, gamma=0.1):
-    """
-    :param img: TIF image filepath
-    :param png_dir: storing pngs dir
-    :param gamma: image γ coefficient
-    :return: None
-    """
-    tif = TIFF.open(img, )
-    index = 0
-    if not os.path.exists(png_dir):
-        os.makedirs(png_dir)
-    for i in tif.iter_images():
-        filename = os.path.basename(img).replace('.tif', '-' + str(index).zfill(4) + '.png')
-        img_mcy = exposure.adjust_gamma(i, gamma)
-        png = img_as_ubyte(img_mcy)
-        plt.imsave(os.path.join(png_dir, filename), png, cmap='gray')
-        index += 1
+#def tif2png(img: str | os.PathLike, png_dir, gamma=0.1):
+#    """
+#    :param img: TIF image filepath
+#    :param png_dir: storing pngs dir
+#    :param gamma: image γ coefficient
+#    :return: None
+#    """
+#    tif = TIFF.open(img, )
+#    index = 0
+#    if not os.path.exists(png_dir):
+#        os.makedirs(png_dir)
+#    for i in tif.iter_images():
+#        filename = os.path.basename(img).replace('.tif', '-' + str(index).zfill(4) + '.png')
+#        img_mcy = exposure.adjust_gamma(i, gamma)
+#        png = img_as_ubyte(img_mcy)
+#        plt.imsave(os.path.join(png_dir, filename), png, cmap='gray')
+#        index += 1
 
 
 def readTif(filepath):

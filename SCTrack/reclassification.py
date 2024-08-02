@@ -17,6 +17,7 @@ from SCTrack.tracker import Tracker, CellNode, TrackingTree
 from SCTrack.config import RAW_INPUT_IMAGE_SIZE
 from SCTrack.config import N_CLASS, CLASS_NAME
 from SCTrack import config
+from SCTrack import refiner
 
 
 class TreeParser(object):
@@ -490,7 +491,7 @@ def run_track(annotation, track_range=None, dic=None, mcy=None, speed_filename=N
     return tracker
 
 
-def track_tree_to_table(tracker: Tracker, filepath):
+def track_tree_to_table(tracker: Tracker):
     """Export track result to table"""
     track_detail_columns = ['frame_index', 'track_id', 'cell_id', 'parent_id', 'center_x', 'center_y', 'cell_type',
                             'mask_of_x_points', 'mask_of_y_points']
@@ -549,8 +550,8 @@ def track_tree_to_table(tracker: Tracker, filepath):
             series_list, new_node_list = generate_series(cell_lineage)
             for series in series_list:
                 track_detail_dataframe = track_detail_dataframe._append(series, ignore_index=True)
-    fname = filepath
-    track_detail_dataframe.to_csv(fname, index=False)
+    
+    return track_detail_dataframe
 
 
 def track_trees_to_json(tracker: Tracker, output_fname, xrange, basename=None):
@@ -654,7 +655,7 @@ def track_tree_to_mask(tracker, width, height, output_dir):
 
 
 def run(annotation, output_dir, basename, track_range=None, save_visualize=True, visualize_background_image=None,
-        dic=None, mcy=None, track_to_json=True):
+        dic=None, mcy=None):
     if track_range is None:
         if type(annotation) is str:
             with open(annotation, encoding='utf-8') as f:
@@ -670,20 +671,28 @@ def run(annotation, output_dir, basename, track_range=None, save_visualize=True,
         speed_output_filename = os.path.join(output_dir, 'track_speed.csv')
     else:
         speed_output_filename = None
+    if not os.path.exists(output_dir):
+        os.mkdir(output_dir)
+        
     tracker = run_track(annotation, track_range=xrange - 2, dic=dic, mcy=mcy, speed_filename=speed_output_filename)
     track_table_fname = os.path.join(output_dir, 'track.csv')
     track_visualization_fname = os.path.join(output_dir, 'track_visualization.tif')
-    track_json_fname = os.path.join(output_dir, 'result_with_track.json')
-    tracktree_save_path = os.path.join(output_dir, 'TrackTree')
-    track_tree_to_table(tracker, track_table_fname)
-    tracker.track_tree_to_json(tracktree_save_path)
-    track_tree_to_TRA(tracker, os.path.join(output_dir, 'TRA.txt'))
-    image_width, image_height = imagesize.get(mcy)
+    # track_json_fname = os.path.join(output_dir, 'result_with_track.json')
+    # tracktree_save_path = os.path.join(output_dir, 'TrackTree')
+    track_tree_df = track_tree_to_table(tracker)
+    refined_track_df = refiner.refine_tracking(track_tree_df)
+    refined_track_df.to_csv(track_table_fname, index = False)
+    # tracker.track_tree_to_json(tracktree_save_path)
+    # track_tree_to_TRA(tracker, os.path.join(output_dir, 'TRA.txt'))
+    # image_width, image_height = imagesize.get(mcy)
     # track_tree_to_mask(tracker, image_width, image_height, os.path.join(output_dir, 'mask'))
-    if track_to_json:
-        track_trees_to_json(tracker, track_json_fname, xrange=xrange, basename=basename)
+    # if track_to_json:
+    #    track_trees_to_json(tracker, track_json_fname, xrange=xrange, basename=basename)
     if save_visualize:
-        tracker.visualize_to_tif(visualize_background_image, track_visualization_fname, tracker.trees, xrange=xrange)
+        # tracker.visualize_to_tif(visualize_background_image, track_visualization_fname, tracker.trees, xrange=xrange)
+        imagef = tifffile.imread(visualize_background_image)
+        img  = refiner.generate_track_visualisation_from_df(refined_track_df, imagef)
+        tifffile.imwrite(track_visualization_fname, img)
 
 
 if __name__ == '__main__':

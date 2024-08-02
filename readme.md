@@ -51,19 +51,14 @@ Below is the expected outputs from the tracking results assuming that the "image
 |__image.tif
 |__annotation.json
 |__tracking_output\
-   ├─TrackTree\
-   └─track_visualization.tif\
-   └─track.csv
-   └─result_with_track.json
+   ├─track.csv
+   └─track_visualisation.tif
 ```
    
-The `TrackTree` folder contains the detailed information of each TrackTree built during the tracking process.
-The `track_visualization.tif` folder contains the png images visualising the tracking results, and `track.csv` is a detailed table 
+The `track_visualization.tif` are greyscale images visualising the tracking results, and `track.csv` is a detailed table 
 of the tracking results.
 
 For specific information about the track.csv, see https://github.com/chan-labsite/SC-Track/blob/master/notebook/quick-start.ipynb.
-The content of `result_with_track.json` is a copy of the annotation.json file containing the cell track information and corrected 
-cell classification information (if this information was provided in the "annotation.json" file).
 
 SC-Track can run without the corresponding "image.tif" file. In this case, SC-Track will output the tracking results without a corresponding
 `track_visualization.tif` folder containing the labelled cell linages.
@@ -76,29 +71,25 @@ To access our demo dataset, you can visit [here](https://zenodo.org/record/83105
 
 ### Installation
 
+To install the latest version of SC-Track, please download SC-Track from this github repository, navigate to the downloaded SC-Track folder where setup.py is located and run the command: 
+
 ```
-Requirement: Python >= 3.7
-
-Windows: pip install SC-Track
-Linux/Macos: pip3 install SC-Track
-
-For details on dependencies, you can view https://github.com/chan-labsite/SC-Track/blob/master/requirements.txt
-Due to file size constraints, the 'example' folder is not included when installing SC-Track from PyPI.
-You can view and download the "example" folder from our GitHub repository if required.
+python setup.py install
 ```
 
--   Note： On `Windows`, the required package `pylibtiff` cannot be installed directly by pip. Please use the following command instead:
+Note： 
 
-    `conda install libtiff`
+On some systems, the required package `pylibtiff` cannot be installed directly by pip. Please use the following command instead:
 
-    or you can download the wheel package from [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pylibtiff), and use the command `pip install pylibtiff.whl` to install the package.
+`conda install libtiff`
 
-    On `Linux` or `macOS`, you can use the command `pip install pylibtiff`.
+or you can download the wheel package from [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pylibtiff), and use the command `pip install pylibtiff.whl` to install the package.
 
-    The installation times on a "normal" desktop computer should not exceed 5 minutes assuming that the computer is connected to a reasonably fast (10 Mbps) broadband connection.
+On `Linux` or `macOS`, you can use the command `pip install pylibtiff`.
 
-    If you install SC-Track from the GitHub repository using the command `python setup.py install`, it is important that you also install the `pylibtiff` package as well.
-    If you encounter the following error `ValueError: Failed to find TIFF header file`, you can try running `sudo apt-get install libtiff5-dev` to fix the error.
+The installation times on a "normal" desktop computer should not exceed 5 minutes assuming that the computer is connected to a reasonably fast (10 Mbps) broadband connection.
+
+If you encounter the following error `ValueError: Failed to find TIFF header file`, you can try running `sudo apt-get install libtiff5-dev` to fix the error.
 
 -----------------------
 
