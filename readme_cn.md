@@ -29,12 +29,10 @@ SC-Track是一款用于对不同延时显微镜图像进行单细胞动态追踪
 
 
 ### Installation
+To install the latest version of SC-Track, please download SC-Track from this github repository, navigate to the downloaded SC-Track folder where setup.py is located and run the command: 
 
 ```
-Requirement: Python >= 3.7
-
-Windows: pip isntall SC-Track
-Linux/Macos: pip3 isntall SC-Track
+python setup.py install
 ```
 
 
