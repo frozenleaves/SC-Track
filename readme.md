@@ -71,9 +71,11 @@ To access our demo dataset, you can visit [here](https://zenodo.org/record/83105
 
 ### Installation
 
-To install the latest version of SC-Track, please download SC-Track from this github repository, navigate to the downloaded SC-Track folder and run the command: 
+To install the latest version of SC-Track, please download SC-Track from this github repository, navigate to the downloaded SC-Track folder where setup.py is located and run the command: 
 
-`python setup.py install`
+```
+python setup.py install
+```
 
 Note： 
 
